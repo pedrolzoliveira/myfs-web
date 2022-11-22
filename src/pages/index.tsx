@@ -1,8 +1,14 @@
-import { LoginForm } from "../components/forms/login-form"
+import { CreateFolderForm } from "../components/forms/create-folder-form"
+import { useFolders } from "../hooks/folder-hooks"
+
 export default function Home() {
+  const { data: folders } = useFolders()
   return (
     <div>
-        <LoginForm/>
+      {folders?.map(folder => folder.name)}
+      <div className="bg-slate-300 p-4">
+        <CreateFolderForm/>
+      </div>
     </div>
   )
 }

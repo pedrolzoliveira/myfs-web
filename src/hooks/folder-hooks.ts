@@ -1,9 +1,13 @@
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { FolderService } from "../services/folder-service";
 
 export function useCreateFolder() {
+    const queryClient = useQueryClient()
     return useMutation({
-        mutationFn: FolderService.create
+        mutationFn: FolderService.create,
+        onSuccess: () => {
+            queryClient.invalidateQueries(['folders'])
+        }
     })
 }
 

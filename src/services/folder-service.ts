@@ -20,7 +20,7 @@ interface CreateData {
 
 async function create(data: CreateData) {
     const response = await api.post<DefaultResponseData<Create>>('/folders', data)
-    return response.data.payload
+    return response.data.payload.folder
 }
 
 
@@ -48,7 +48,7 @@ interface Rename {
 
 async function rename(data: RenameData) {
     const response = await api.put<DefaultResponseData<Rename>>('/folders', data)
-    return response.data.payload
+    return response.data.payload.folder
 }
 
 async function destroy(id: string) {
@@ -63,7 +63,7 @@ interface GetFolders {
 
 export async function getFolders() {
     const response = await api.get<DefaultResponseData<GetFolders>>('/folders')
-    return response.data.payload
+    return response.data.payload.folders
 }
 
 interface GetFolder {
@@ -72,7 +72,7 @@ interface GetFolder {
 
 export async function getFolder(id: string) {
     const response = await api.get<DefaultResponseData<GetFolder>>('/folders', { data: { id } })
-    return response.data.payload
+    return response.data.payload.folder
 
 }
 
