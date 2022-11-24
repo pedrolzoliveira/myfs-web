@@ -1,6 +1,7 @@
 import { ErrorMessage, Field, Form, Formik,  } from "formik"
 import { useCreateFolder } from "../../hooks/folder-hooks"
 import * as Yup from 'yup'
+import { AxiosError } from "axios"
 
 
 const createFolderSchema = Yup.object().shape({
@@ -14,8 +15,17 @@ export const CreateFolderForm = () => {
         <Formik initialValues={{
             name: ''
         }}
-        onSubmit={async (values) => {
-            const folder = await createFoldder(values)
+        onSubmit={(values, helpers) => {
+            createFoldder(values)
+            .catch(e => {
+                if (e instanceof AxiosError && e.response?.status === 409) {
+                    helpers.setErrors({
+                        name: 'Name is already being used in folder'
+                    })
+                } else {
+                    throw e
+                }
+            })
         }}
         validationSchema={createFolderSchema}
         >

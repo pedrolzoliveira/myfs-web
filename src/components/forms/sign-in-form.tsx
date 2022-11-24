@@ -1,8 +1,8 @@
 import { ErrorMessage, Field, Form, Formik, yupToFormErrors,  } from "formik"
 import { useRouter } from "next/router"
 import { useSignIn } from "../../hooks/user-hooks"
-import * as Yup from 'yup'
 import { AxiosError } from "axios"
+import * as Yup from 'yup'
 
 const signInSchema = Yup.object().shape({
     email: Yup.string().email('Must be a valid email').required('Required'),
@@ -19,19 +19,18 @@ export const SignInForm = () => {
             password: ''
         }}
         validationSchema={signInSchema}
-        onSubmit={async (values, helpers) => {
-            try {
-                await signIn(values)
-                await push('/')
-            } catch(e) {
-                if (e instanceof AxiosError) {
-                    if (e.response?.status === 404) {
-                        helpers.setErrors({
-                            email: 'User not found'
-                        })
-                    }
+        onSubmit={(values, helpers) => {
+            signIn(values)
+            .then(() => push('/'))
+            .catch(e => {
+                if (e instanceof AxiosError && e.response?.status === 404) {
+                    helpers.setErrors({
+                        email: 'User not found'
+                    })
+                } else {
+                    throw e
                 }
-            }
+            })
         }}
         >
             <Form className='flex flex-col'>
