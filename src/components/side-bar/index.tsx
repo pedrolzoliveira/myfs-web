@@ -4,9 +4,10 @@ import { SideBarOption } from './side-bar-option'
 
 type SideBarProps = {
     children?: ReactFragment
+    className?: string
 }
 
-export function SideBar({ children }: SideBarProps) {
+export function SideBar({ children, className }: SideBarProps) {
     return (
         <div className='flex'>
             <nav className='border w-[250px] h-screen'>
@@ -24,7 +25,7 @@ export function SideBar({ children }: SideBarProps) {
                     </div>
                 </ul>
             </nav>
-            <div>
+            <div className={className}>
                 {children}
             </div>
         </div>
