@@ -17,11 +17,11 @@ export function SideBar({ children, className }: SideBarProps) {
                         <SideBarOption caption='Home' Icon={TbHome}/>
                     </div>
                     <div className='space-y-2'>
-                        <h1 className='text-gray-500 font-light'>Settings</h1>
-                        <SideBarOption caption='Profile' Icon={TbUser}/>
-                        <SideBarOption caption='Permissions' Icon={TbTools}/>
+                        <h1 className='text-gray-500 font-light'>Configurações</h1>
+                        <SideBarOption caption='Perfil' Icon={TbUser}/>
+                        <SideBarOption caption='Permissões' Icon={TbTools}/>
                         <SideBarOption caption='Tags' Icon={TbTags}/>
-                        <SideBarOption caption='Logout' Icon={TbLogout}/>
+                        <SideBarOption caption='Sair' Icon={TbLogout}/>
                     </div>
                 </ul>
             </nav>
