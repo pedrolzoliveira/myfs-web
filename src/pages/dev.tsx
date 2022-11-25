@@ -1,9 +1,9 @@
 import { SideBar } from '../components/side-bar' 
 export const Dev = () => {
     return (
-        <div>
-            <SideBar/>
-        </div>
+        <SideBar>
+            testing
+        </SideBar>
     )
 }
 
