@@ -24,6 +24,12 @@ async function signIn(data: SignInData) {
 }
 
 
+async function logOut() {
+    const response = await api.post('/users/logout')
+    return response.status === 200
+}
+
 export const UserService = {
-    signIn
+    signIn,
+    logOut
 }
