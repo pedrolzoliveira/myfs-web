@@ -1,4 +1,3 @@
-import axios from "axios";
 import { api, DefaultResponseData } from "./api";
 
 interface User {

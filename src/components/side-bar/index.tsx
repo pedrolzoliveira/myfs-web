@@ -16,22 +16,27 @@ export function SideBar({ children, className }: SideBarProps) {
                         <h1 className='text-gray-500 font-light'>Menu</h1>
                         <SideBarOption
                           caption='Home'
-                          Icon={TbHome}/>
+                          Icon={TbHome}
+                          href='/'/>
                     </div>
                     <div className='space-y-2'>
                         <h1 className='text-gray-500 font-light'>Configurações</h1>
                         <SideBarOption
                           caption='Perfil'
-                          Icon={TbUser}/>
+                          Icon={TbUser}
+                          href='/profile'/>
                         <SideBarOption
                           caption='Permissões'
-                          Icon={TbTools}/>
+                          Icon={TbTools}
+                          href='/permissions'/>
                         <SideBarOption
                           caption='Tags'
-                          Icon={TbTags}/>
+                          Icon={TbTags}
+                          href='/tags'/>
                         <SideBarOption
                           caption='Sair'
-                          Icon={TbLogout}/>
+                          Icon={TbLogout}
+                          href='/logout'/>
                     </div>
                 </ul>
             </nav>
