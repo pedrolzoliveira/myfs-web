@@ -34,7 +34,7 @@ export const SignInForm = () => {
         }}
         >
             <Form className='flex flex-col space-y-2 w-1/2'>
-                <h1 className="mb-4 text-xl">Login</h1>
+                <h1 className="mb-4 text-xl font-light">Login</h1>
                 <label htmlFor='email'>Email</label>
                 <Field className='border rounded p-2'
                   id='email'
