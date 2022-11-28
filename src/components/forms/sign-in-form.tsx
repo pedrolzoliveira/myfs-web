@@ -21,7 +21,10 @@ export const SignInForm = () => {
         validationSchema={signInSchema}
         onSubmit={(values, helpers) => {
             signIn(values)
-            .then(() => push('/'))
+            .then(() => {
+                localStorage.setItem('IS_LOGGED_IN', '1')
+                push('/')
+            })
             .catch(e => {
                 if (e instanceof AxiosError && e.response?.status === 404) {
                     helpers.setErrors({

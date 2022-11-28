@@ -8,6 +8,7 @@ export const Logout = () => {
     UserService.logOut()
     .then(() => {
         queryClient.invalidateQueries(['info'])
+        localStorage.removeItem('IS_LOGGED_IN')
         push('/signin')
     })
 
