@@ -1,48 +1,49 @@
-import { ReactFragment, ReactNode } from 'react'
-import { TbTags, TbTools, TbHome, TbUser, TbLogout } from 'react-icons/tb'
-import { SideBarOption } from './side-bar-option'
+import { ReactNode } from 'react';
+import { Layout, Menu, MenuProps } from 'antd'
+import { TbHome, TbLogout, TbTags, TbTools, TbUser } from 'react-icons/tb';
 
-type SideBarProps = {
-    children?: ReactNode
-    className?: string
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
 }
 
-export function SideBar({ children, className }: SideBarProps) {
+const { Sider, Content } = Layout;
+
+export const SideBar = (props: { children?: ReactNode }) => {
+
+    const items = [
+        getItem('Menu', 'menu', null, [getItem('Home', 'home', <TbHome/>)], 'group'),
+        getItem('Configurações', 'config', null, [
+            getItem('Perfil', 'profile', <TbUser/>),
+            getItem('Permissões', 'permissions', <TbTools/>),
+            getItem('Tags', 'tags', <TbTags/>),
+            getItem('Sair', 'logout', <TbLogout/>),
+        ], 'group'),
+    ]
+
     return (
-        <div className='flex'>
-            <nav className='border w-[250px] h-screen'>
-                <ul className='space-y-2 p-4 flex flex-col justify-between h-full'>
-                    <div className='space-y-2'>
-                        <h1 className='text-gray-500 font-light'>Menu</h1>
-                        <SideBarOption
-                          caption='Home'
-                          Icon={TbHome}
-                          href='/'/>
-                    </div>
-                    <div className='space-y-2'>
-                        <h1 className='text-gray-500 font-light'>Configurações</h1>
-                        <SideBarOption
-                          caption='Perfil'
-                          Icon={TbUser}
-                          href='/profile'/>
-                        <SideBarOption
-                          caption='Permissões'
-                          Icon={TbTools}
-                          href='/permissions'/>
-                        <SideBarOption
-                          caption='Tags'
-                          Icon={TbTags}
-                          href='/tags'/>
-                        <SideBarOption
-                          caption='Sair'
-                          Icon={TbLogout}
-                          href='/logout'/>
-                    </div>
-                </ul>
-            </nav>
-            <div className={className}>
-                {children}
-            </div>
-        </div>
+        <Layout style={{ height: '100vh' }}>
+            <Sider style={{ background: 'white' }}>
+                <Menu items={items}/>
+            </Sider>
+            <Layout>
+              <Content>
+                {props.children}
+              </Content>
+            </Layout>
+        </Layout>
     )
 }

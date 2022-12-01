@@ -16,5 +16,15 @@ export function useFolder(id: string) {
 }
 
 export function useFolders() {
-    return useQuery('folders', FolderService.getFolders)
+    return useQuery('folders', FolderService.getFolders, {
+        select(data) {
+            return data.map(folder => {
+                return {
+                    ...folder,
+                    updatedAt: new Date(folder.updatedAt).toLocaleDateString(),
+                    createdAt: new Date(folder.createdAt).toLocaleDateString()
+                }
+            })
+        },
+    })
 }
