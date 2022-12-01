@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { Layout, Menu, MenuProps } from 'antd'
 import { TbHome, TbLogout, TbTags, TbTools, TbUser } from 'react-icons/tb';
+import Link from 'next/link'
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -25,12 +26,14 @@ const { Sider, Content } = Layout;
 export const SideBar = (props: { children?: ReactNode }) => {
 
     const items = [
-        getItem('Menu', 'menu', null, [getItem('Home', 'home', <TbHome/>)], 'group'),
+        getItem('Menu', 'menu', null, [
+          getItem(<Link href='/'>Home</Link>, 'home', <TbHome/>)
+        ], 'group'),
         getItem('Configurações', 'config', null, [
-            getItem('Perfil', 'profile', <TbUser/>),
-            getItem('Permissões', 'permissions', <TbTools/>),
-            getItem('Tags', 'tags', <TbTags/>),
-            getItem('Sair', 'logout', <TbLogout/>),
+            getItem(<Link href='/profile'>Perfil</Link>, 'profile', <TbUser/>),
+            getItem(<Link href='/permissions'>Permissões</Link>, 'permissions', <TbTools/>),
+            getItem(<Link href='/tags'>Tags</Link>, 'tags', <TbTags/>),
+            getItem(<Link href='/logout'>Sair</Link>, 'logout', <TbLogout/>),
         ], 'group'),
     ]
 
