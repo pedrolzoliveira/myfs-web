@@ -1,19 +1,17 @@
-import { FileList } from '../components/file-list'
+import { Layout, Input } from 'antd'
 
-export function FileControllerHeader() {
-    return (
-        <div>
-            <input type="text" className='border rounded w-full p-2'/>
-        </div>
-    )
-}
-
+const { Header, Content, Sider } = Layout;
 
 export const FileController = () => {
     return (
-        <div className='w-full h-full p-4'>
-            <FileControllerHeader/>
-            <FileList/>
-        </div>
+        <Layout>
+            <Layout>
+                <Header>
+                    <Input.Search/>
+                </Header>
+                <Content>Content</Content>
+            </Layout>
+            <Sider>Sider</Sider>
+        </Layout>
     )
 }
