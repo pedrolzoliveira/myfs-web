@@ -1,6 +1,6 @@
 import { api, DefaultResponseData } from "./api"
 
-interface File {
+export interface File {
     id: string
     name: string
     location: string

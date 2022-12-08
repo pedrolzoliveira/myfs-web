@@ -1,5 +1,5 @@
 import { api, DefaultResponseData } from "./api";
-
+import { File } from './file-service'
 interface Folder {
     id: string
     name: string
@@ -7,6 +7,7 @@ interface Folder {
     userId: string
     createdAt: string
     updatedAt: string
+    files: File[]
 }
 
 interface Create {
