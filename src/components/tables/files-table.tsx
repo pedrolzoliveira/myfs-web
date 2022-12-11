@@ -1,6 +1,13 @@
 import { Table } from "antd"
 import { ColumnsType } from "antd/es/table"
-import { TbFile, TbFileUpload, TbFileZip, TbFolder } from 'react-icons/tb'
+import {
+    TbFile,
+    TbFileDigit,
+    TbFileText,
+    TbFileUpload,
+    TbFileZip,
+    TbFolder
+} from 'react-icons/tb'
 import { useFolders } from "../../hooks/folder-hooks"
 
 interface DataType {
@@ -36,12 +43,18 @@ const columns: ColumnsType<DataType> = [
         dataIndex: 'updatedAt',
         key: 'updatedAt' 
     },
+    {
+        title: 'Ações',
+    }
 ]
 
 
 function renderIcon(type: 'folder' | 'file', name: string) {
     if (type === 'folder') return <TbFolder/>
     switch (name.toLocaleLowerCase().split('.').pop()) {
+        case undefined: {
+            return <TbFileDigit/>
+        }
         case 'jpg':
         case 'jpeg':
         case 'mp4': {
@@ -49,6 +62,9 @@ function renderIcon(type: 'folder' | 'file', name: string) {
         }
         case 'zip': {
             return <TbFileZip/>
+        }
+        case 'txt': {
+            return <TbFileText/>
         }
         default: {
             return <TbFile/>

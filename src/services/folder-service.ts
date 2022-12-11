@@ -20,6 +20,7 @@ interface CreateData {
 }
 
 async function create(data: CreateData) {
+    alert('lamo?')
     const response = await api.post<DefaultResponseData<Create>>('/folders', data)
     return response.data.payload.folder
 }

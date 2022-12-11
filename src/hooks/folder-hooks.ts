@@ -28,3 +28,11 @@ export function useFolders() {
         },
     })
 }
+
+export function useDeleteFolder() {
+    return useMutation({
+        onSuccess: () => {
+            
+        }
+    })
+}
